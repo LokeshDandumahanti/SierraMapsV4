@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SierraMaps ~ Comprehensive Mapping Application</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Leaflet & Leaflet Draw CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div class="container py-3">
+  <!-- Navigation Tabs -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="/api/placeholder/32/32" alt="Logo" width="32" height="32" class="d-inline-block align-text-top me-2">
+        SierraMaps
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="nav nav-tabs" id="mapTabs" role="tablist">
+          <!-- Home Tab -->
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-panel" type="button" role="tab" aria-selected="true">
+              Home
+            </button>
+          </li>
+          <!-- Routing Tab -->
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="route-tab" data-bs-toggle="tab" data-bs-target="#route-panel" type="button" role="tab" aria-selected="false">
+              Routing
+            </button>
+          </li>
+          <!-- Elevation Tab -->
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="elevation-tab" data-bs-toggle="tab" data-bs-target="#elevation-panel" type="button" role="tab" aria-selected="false">
+              Elevation
+            </button>
+          </li>
+          <!-- Nearby Places Tab -->
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="places-tab" data-bs-toggle="tab" data-bs-target="#places-panel" type="button" role="tab" aria-selected="false">
+              Nearby Places
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Map Container (used by other tabs) -->
+  <div id="map"></div>
+
+  <!-- Tab Panels -->
+  <div class="tab-content" id="mapTabContent">
+    <!-- Home Panel -->
+    <div class="tab-pane fade show active" id="home-panel" role="tabpanel" aria-labelledby="home-tab">
+      <div class="p-3">
+        <h1><b>SierraMaps</b></h1>
+        <h6><b>Where Privacy meets Affordability</b></h6>
+        <p>
+          📄 <a href="https://sierramaps.ftp.sh/documentation/"> API Documentation</a> |🚀 <a href="https://sierramaps.ftp.sh/"> SignUp</a>
+        </p>        
+        <p>Feel free to explore this demo website which uses SierraMaps at the backend. Content following be what were the challenges we faced which made us to tackle it with an seemingly impossible feat</p>
+        <h6><i>----------------------------------------------------</i></h6>
+        <h5><b>Chapter 1 : </b>The pain and problem</h5>
+        <p>A few months ago, We were working on an e-commerce website that needed basic location services — geocoding, routes for delivery, nearby places. Just the essentials.</p>
+        <p>So we integrated Google Maps. Everything worked great... until we checked the billing dashboard.</p>
+        <ul>
+          <li>📈 ₹1.85 Lakh for 1 million requests/month</li>
+          <li>💳 Credit card required to even begin</li>
+          <li>⛔️ Free tier? Only 1% of what I actually needed</li>
+        </ul>
+        <h6><i>----------------------------------------------------</i></h6>
+        <h5><b>Chapter 2 : </b>The Alternatives</h5>
+        <p>Then we tried Mapbox. Slightly cheaper — but complex rate limiting, hidden quota resets, and expensive usage beyond a tiny free tier.</p>
+        <p>Why is it that simple APIs like converting addresses or fetching directions come with enterprise-grade pricing?</p>
+        <h6><i>----------------------------------------------------</i></h6>
+        <h5><b>Chapter 3 : </b>Building the GoogleMaps from scratch, but efficient and cost efficient</h5>
+
+        <p>That frustration is what led me to build SierraMaps — an API platform that puts developers first. A modern, fast, and affordable alternative to Google Maps and similar services, designed with accessibility, performance, and scale in mind.</p>
+        <p><strong>No complex pricing. No hidden charges. No fear of crossing a line you didn’t see.</strong></p>
+        <p>Just powerful, fast, and free Maps APIs that anyone can use — whether you're a student, startup, researcher, or indie dev.</p>
+        <ul>
+          <li>🔹 1,000,000 requests/month for FREE</li>
+          <li>🔹 No credit card needed</li>
+          <li>🔹 Built for real-world apps</li>
+        </ul>
+        <h6><i>----------------------------------------------------</i></h6>
+        <h2><b>What Makes SierraMaps Different?</b></h2>
+        <p>💸 <strong>1,000,000 Free Requests/Month per user</strong> — That’s 100x more than most platforms — perfect for growing startups, students, indie devs, and even enterprise-level prototyping.</p>
+        <p>🚀 <strong>Superfast API Performance</strong> — Backed by optimized infrastructure with lightweight responses and blazing speed.</p>
+        <p>🧠 <strong>Built by a developer, for developers</strong> — Clear endpoints, RESTful structure, JSON outputs, and easy integration with any stack (JS, Python, Android, etc.).</p>
+        <h6><i>----------------------------------------------------</i></h6>
+        <h3><b>Google Maps vs SierraMaps — Performance & Developer Experience</b></h3>
+        <p>As developers, it's not just about functionality — it's about speed, cost, and freedom. Here's how SierraMaps stacks up against Google Maps, based on real benchmarks and dev experience:</p>
+        <ul>
+          <li><strong>Free Tier</strong><br>
+              Google Maps: 1,000 requests/month<br>
+              SierraMaps: 🚀 1,000,000 requests/month — 100x more for free!
+          </li>
+          <li><strong>Credit Card Requirement</strong><br>
+              Google Maps: Mandatory<br>
+              SierraMaps: ❌ No credit card needed
+          </li>
+          <li><strong>Cost Beyond Free Tier</strong><br>
+              Google Maps: ~₹1.85 lakh for 1M requests/month<br>
+              SierraMaps: Still FREE within generous limits
+          </li>
+          <li><strong>API Response Times (Real Benchmarks)</strong>
+            <ul>
+              <li>Geocoding: Google Maps: 420ms | SierraMaps: ⚡ 102ms</li>
+              <li>Reverse Geocoding: Google: 390ms | Sierra: 95ms</li>
+              <li>Multi-waypoint Route Planning: Google: 560ms | Sierra: 142ms</li>
+              <li>Places Search: Google: 600ms | Sierra: 130ms</li>
+            </ul>
+          </li>
+        </ul>
+        <h6><i>----------------------------------------------------</i></h6>
+        <h3><b>Developer Experience</b></h3>
+        <p>
+          <strong>Google Maps:</strong><br>
+          Complex SDKs, rate limiting, verbose responses, strict quotas.
+        </p>
+        <p>
+          <strong>SierraMaps:</strong><br>
+          Simple REST APIs, lightweight JSON, no hidden limits, plug-and-play for any stack.
+        </p>
+        <p>
+          <strong>Open Access to Tile Server?</strong><br>
+          Google Maps: No<br>
+          SierraMaps: ✅ Yes! Host your own tiles
+        </p>
+        <p>
+          <strong>Global Coverage?</strong><br>
+          Both platforms offer global reach — but only SierraMaps makes it affordable and accessible to everyone.
+        </p>
+        <h6><i>----------------------------------------------------</i></h6>
+        <h3><b>Core Features of SierraMaps</b></h3>
+        <ul>
+          <li>🌍 <strong>Geocoding:</strong> Convert any address to precise coordinates</li>
+          <li>📍 <strong>Reverse Geocoding:</strong> Get readable addresses from latitude &amp; longitude</li>
+          <li>🛣️ <strong>Routing &amp; Directions:</strong> Accurate routes with support for multiple waypoints</li>
+          <li>🏙️ <strong>Places API:</strong> Search and explore points of interest (POIs), landmarks</li>
+          <li>🏔️ <strong>Elevation API:</strong> Retrieve elevation data for any geographic point</li>
+          <li>📊 <strong>Spatial Data API:</strong> Access place metadata, categories, and attributes</li>
+          <li>🗺️ <strong>Tile API Server:</strong> Build your own maps using internal tile rendering (no external dependencies)</li>
+          <li>🕒 <strong>TimeZone API:</strong> Get time zone and local time from any location</li>
+        </ul>
+        <h6><i>----------------------------------------------------</i></h6>
+        <h3><b>Use Cases for SierraMaps</b></h3>
+        <ul>
+          <li>🧭 Navigation &amp; Routing Apps</li>
+          <li>🏘️ Real Estate Platforms</li>
+          <li>📦 Logistics &amp; Delivery</li>
+          <li>🛰️ GIS &amp; Mapping Applications</li>
+          <li>🎓 Educational Projects</li>
+          <li>🌐 Travel &amp; Local Discovery Apps</li>
+        </ul>
+        <h6><i>----------------------------------------------------</i></h6>
+        <h3><b>Documentation &amp; Access</b></h3>
+        <p>
+          📄 <a href="https://sierramaps.ftp.sh/documentation/"> Documentation</a> |🚀 <a href="https://sierramaps.ftp.sh/"> SignUp</a>
+        </p>
+        <p>
+          <strong>Contact:</strong> gupta.ojas.27@gmail.com |  dlokesh5132@gmail.com
+        </p>
+        <p>No paywalls. No hidden fees. Just clean, fast, and scalable Maps APIs.</p>
+        <p>
+          <strong>Whether you're an indie developer, a startup founder, or building a nationwide platform — SierraMaps is here to support you with a developer-first approach, real-time performance, and a mission to democratize geospatial access.</strong>
+        </p>
+        <p>Let’s make location intelligence accessible to everyone. 🌐✨</p>   
+      </div>
+    </div>
+
+    <!-- Routing Panel -->
+    <div class="tab-pane fade" id="route-panel" role="tabpanel" aria-labelledby="route-tab">
+      <div class="row mb-3">
+        <div class="col-md-5">
+          <div class="input-group">
+            <span class="input-group-text">From</span>
+            <input id="start" class="form-control" placeholder="Start (Address or lat,lng)">
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="input-group">
+            <span class="input-group-text">To</span>
+            <input id="end" class="form-control" placeholder="End (Address or lat,lng)">
+          </div>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-primary w-100" onclick="handleRouting()">Get Route</button>
+        </div>
+      </div>
+      <h5>Traffic Alerts</h5>
+      <div id="trafficAlerts" class="traffic-list"></div>
+    </div>
+
+    <!-- Elevation Panel -->
+    <div class="tab-pane fade" id="elevation-panel" role="tabpanel" aria-labelledby="elevation-tab">
+      <div class="row mb-3">
+        <div class="col-md-5">
+          <div class="input-group">
+            <span class="input-group-text">From</span>
+            <input id="elevationStart" class="form-control" placeholder="Start address">
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="input-group">
+            <span class="input-group-text">To</span>
+            <input id="elevationEnd" class="form-control" placeholder="End address">
+          </div>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-success w-100" onclick="getElevationProfile()">Show Elevation</button>
+        </div>
+      </div>
+      <canvas id="elevationChart"></canvas>
+    </div>
+
+    <!-- Places Panel -->
+    <div class="tab-pane fade" id="places-panel" role="tabpanel" aria-labelledby="places-tab">
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <p class="alert alert-info">Draw a rectangle on the map to select an area, then click "Find Nearby Places".</p>
+        </div>
+        <div class="col-md-12">
+          <button class="btn btn-success" onclick="fetchPlaces()">Find Nearby Places</button>
+        </div>
+      </div>
+      <div id="placesContainer" class="row"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Vendor Scripts -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Main Module Script -->
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
